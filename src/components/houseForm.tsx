@@ -1,14 +1,14 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, gql } from "@apollo/client";
-// import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import Link from "next/link";
 // import { Image } from "cloudinary-react";
 import { SearchBox } from "./searchBox";
-// import {
-//   CreateHouseMutation,
-//   CreateHouseMutationVariables,
-// } from "src/generated/CreateHouseMutation";
+import {
+  CreateHouseMutation,
+  CreateHouseMutationVariables,
+} from "src/generated/CreateHouseMutation";
 // import {
 //   UpdateHouseMutation,
 //   UpdateHouseMutationVariables,
@@ -20,6 +20,14 @@ const SIGNATURE_MUTATION = gql`
     createImageSignature {
       signature
       timestamp
+    }
+  }
+`;
+
+const CREATE_HOUSE_MUTATION = gql`
+  mutation CreateHouseMutation($input: HouseInput!) {
+    createHouse(input: $input) {
+      id
     }
   }
 `;
@@ -59,6 +67,7 @@ interface IFormData {
 interface IProps {}
 
 export default function HouseForm({}: IProps) {
+  const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>();
   const { register, handleSubmit, setValue, errors, watch } = useForm<
@@ -68,6 +77,10 @@ export default function HouseForm({}: IProps) {
   const [createSignature] = useMutation<CreateSignatureMutation>(
     SIGNATURE_MUTATION
   );
+  const [createHouse] = useMutation<
+    CreateHouseMutation,
+    CreateHouseMutationVariables
+  >(CREATE_HOUSE_MUTATION);
 
   useEffect(() => {
     register({ name: "address" }, { required: "Please enter your address" });
@@ -80,6 +93,24 @@ export default function HouseForm({}: IProps) {
     if (signatureData) {
       const { signature, timestamp } = signatureData.createImageSignature;
       const imageData = await uploadImage(data.image[0], signature, timestamp);
+
+      const { data: houseData } = await createHouse({
+        variables: {
+          input: {
+            address: data.address,
+            image: imageData.secure_url,
+            coordinates: {
+              latitude: data.latitude,
+              longitude: data.longitude,
+            },
+            bedrooms: parseInt(data.bedrooms, 10),
+          },
+        },
+      });
+
+      if (houseData?.createHouse) {
+        router.push(`/houses/${houseData.createHouse.id}`);
+      }
     }
   };
 

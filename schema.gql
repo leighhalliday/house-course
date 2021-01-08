@@ -3,12 +3,36 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input CoordinatesInput {
+  latitude: Float!
+  longitude: Float!
+}
+
+type House {
+  address: String!
+  bedrooms: Int!
+  id: ID!
+  image: String!
+  latitude: Float!
+  longitude: Float!
+  publicId: String!
+  userId: String!
+}
+
+input HouseInput {
+  address: String!
+  bedrooms: Int!
+  coordinates: CoordinatesInput!
+  image: String!
+}
+
 type ImageSignature {
   signature: String!
   timestamp: Int!
 }
 
 type Mutation {
+  createHouse(input: HouseInput!): House
   createImageSignature: ImageSignature!
 }
 
