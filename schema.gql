@@ -38,4 +38,5 @@ type Mutation {
 
 type Query {
   hello: String!
+  house(id: String!): House
 }
