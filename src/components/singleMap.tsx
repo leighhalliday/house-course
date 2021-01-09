@@ -11,9 +11,10 @@ interface IHouse {
 
 interface IProps {
   house: IHouse;
+  nearby: IHouse[];
 }
 
-export default function SingleMap({ house }: IProps) {
+export default function SingleMap({ house, nearby }: IProps) {
   const [viewport, setViewport] = useState({
     latitude: house.latitude,
     longitude: house.longitude,
@@ -49,6 +50,22 @@ export default function SingleMap({ house }: IProps) {
             <img src="/home-color.svg" className="w-8" alt="selected house" />
           </button>
         </Marker>
+
+        {nearby.map((near) => (
+          <Marker
+            key={near.id}
+            latitude={near.latitude}
+            longitude={near.longitude}
+            offsetLeft={-15}
+            offsetTop={-15}
+          >
+            <Link href={`/houses/${near.id}`}>
+              <a style={{ width: "30px", height: "30px", fontSize: "30px" }}>
+                <img src="/home-solid.svg" className="w-8" alt="nearby house" />
+              </a>
+            </Link>
+          </Marker>
+        ))}
       </ReactMapGL>
     </div>
   );

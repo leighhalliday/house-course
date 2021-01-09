@@ -15,6 +15,7 @@ type House {
   image: String!
   latitude: Float!
   longitude: Float!
+  nearby: [House!]!
   publicId: String!
   userId: String!
 }
