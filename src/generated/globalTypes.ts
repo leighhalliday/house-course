@@ -7,6 +7,11 @@
 // START Enums and Input Objects
 //==============================================================
 
+export interface BoundsInput {
+  ne: CoordinatesInput;
+  sw: CoordinatesInput;
+}
+
 export interface CoordinatesInput {
   latitude: number;
   longitude: number;

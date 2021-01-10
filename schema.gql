@@ -3,6 +3,11 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input BoundsInput {
+  ne: CoordinatesInput!
+  sw: CoordinatesInput!
+}
+
 input CoordinatesInput {
   latitude: Float!
   longitude: Float!
@@ -40,4 +45,5 @@ type Mutation {
 type Query {
   hello: String!
   house(id: String!): House
+  houses(bounds: BoundsInput!): [House!]!
 }
