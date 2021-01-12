@@ -40,11 +40,11 @@ type ImageSignature {
 type Mutation {
   createHouse(input: HouseInput!): House
   createImageSignature: ImageSignature!
+  deleteHouse(id: String!): Boolean!
   updateHouse(id: String!, input: HouseInput!): House
 }
 
 type Query {
-  hello: String!
   house(id: String!): House
   houses(bounds: BoundsInput!): [House!]!
 }
