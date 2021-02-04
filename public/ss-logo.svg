@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="245px" height="50px" viewBox="0 0 245 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Large-Device-Desktops-Copy-2" transform="translate(-32.000000, -24.000000)">
+            <g id="Logo" transform="translate(32.000000, 24.000000)">
+                <g id="Group">
+                    <path d="M4.8,0 L45.2,0 L45.2,0 C47.8509668,4.2220883e-15 50,2.1490332 50,4.8 L50,45.2 L50,45.2 C50,47.8509668 47.8509668,50 45.2,50 L4.8,50 L4.8,50 C2.1490332,50 1.21282822e-15,47.8509668 8.8817842e-16,45.2 L0,4.8 L0,4.8 C-3.24649801e-16,2.1490332 2.1490332,-2.17756056e-15 4.8,-2.66453526e-15 Z" id="Rectangle-6" fill="#07D654"></path>
+                    <polygon id="Rectangle" fill="#FFFFFF" points="9 7 42 7 42 43 9 43"></polygon>
+                    <polygon id="Rectangle-3-Copy-5" fill="#248232" points="0 28 34 28 34 35 0 35"></polygon>
+                    <polygon id="Rectangle-3-Copy-4" fill="#248232" points="16 14 50 14 50 21 16 21"></polygon>
+                    <polygon id="Rectangle-2" fill="#2BA84A" points="0 7 9 7 9 43 0 43"></polygon>
+                    <polygon id="Rectangle-2-Copy-2" fill="#2BA84A" points="41 7 50 7 50 43 41 43"></polygon>
+                    <polygon id="Rectangle-3-Copy-2" points="0 43 50 43 50 50 0 50"></polygon>
+                    <polygon id="Rectangle-3-Copy" fill="#248232" points="9 0 42 0 42 7 9 7"></polygon>
+                    <polygon id="Rectangle-3-Copy-3" fill="#248232" points="9 43 42 43 42 50 9 50"></polygon>
+                </g>
+                <text id="SPORTYSPOTS" font-family="Rajdhani-Bold, Rajdhani" font-size="30" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="74" y="33">SPORTYSPOTS</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
