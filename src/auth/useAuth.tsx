@@ -26,7 +26,7 @@ const AuthContext = createContext<IAuthContext>({
 });
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
-  const [user, setuser] = useState<firebase.User | null>(null);
+  const [user, setUser] = useState<firebase.User | null>(null);
   const router = useRouter();
 
   const logout = () => {
@@ -48,10 +48,10 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
         if (user) {
           const token = await user.getIdToken();
           setTokenCookie(token);
-          setuser(user);
+          setUser(user);
         } else {
           removeTokenCookie();
-          setuser(null);
+          setUser(null);
         }
       });
 
