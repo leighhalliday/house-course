@@ -3,6 +3,15 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type ImageSignature {
+  signature: String!
+  timestamp: Int!
+}
+
+type Mutation {
+  createImageSignature: ImageSignature!
+}
+
 type Query {
   hello: String!
 }
