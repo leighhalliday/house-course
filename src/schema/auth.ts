@@ -1,4 +1,7 @@
-// import { AuthChecker } from "type-graphql";
-// import { Context } from "./context";
+import { AuthChecker } from "type-graphql";
+import { Context } from "./context";
 
-export {};
+export const authChecker: AuthChecker<Context> = ({ context }) => {
+  const { uid } = context;
+  return !!uid;
+};
