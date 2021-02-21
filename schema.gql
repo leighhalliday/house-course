@@ -20,9 +20,11 @@ type Mutation {
 
 type Query {
   hello: String!
+  spot(id: String!): Spot
 }
 
 type Spot {
+  address: String!
   id: ID!
   image: String!
   latitude: Float!
