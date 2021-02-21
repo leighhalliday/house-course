@@ -1,14 +1,14 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, gql } from "@apollo/client";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Link from "next/link";
 // import { Image } from "cloudinary-react";
 import { SearchBox } from "./searchBox";
-// import {
-//   CreateHouseMutation,
-//   CreateHouseMutationVariables,
-// } from "src/generated/CreateHouseMutation";
+import {
+  CreateSpotMutation,
+  CreateSpotMutationVariables,
+} from "src/generated/CreateSpotMutation";
 // import {
 //   UpdateHouseMutation,
 //   UpdateHouseMutationVariables,
@@ -20,6 +20,14 @@ const SIGNATURE_MUTATION = gql`
     createImageSignature {
       signature
       timestamp
+    }
+  }
+`;
+
+const CREATE_SPOT_MUTATION = gql`
+  mutation CreateSpotMutation($input: SpotInput!) {
+    createSpot(input: $input) {
+      id
     }
   }
 `;
@@ -58,6 +66,7 @@ interface IFormData {
 interface IProps {}
 
 export default function SpotForm({}: IProps) {
+  const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>();
   const { register, handleSubmit, setValue, errors, watch } = useForm<
@@ -69,6 +78,11 @@ export default function SpotForm({}: IProps) {
   const [createSignature] = useMutation<CreateSignatureMutation>(
     SIGNATURE_MUTATION
   );
+
+  const [createSpot] = useMutation<
+    CreateSpotMutation,
+    CreateSpotMutationVariables
+  >(CREATE_SPOT_MUTATION);
 
   useEffect(() => {
     register({ name: "address" }, { required: "Please enter an address" });
@@ -82,6 +96,24 @@ export default function SpotForm({}: IProps) {
     if (signatureData) {
       const { signature, timestamp } = signatureData.createImageSignature;
       const imageData = await uploadImage(data.image[0], signature, timestamp);
+
+      const { data: spotData } = await createSpot({
+        variables: {
+          input: {
+            address: data.address,
+            image: imageData.secure_url,
+            coordinates: {
+              latitude: data.latitude,
+              longitude: data.longitude,
+            },
+            sports: data.sports,
+          },
+        },
+      });
+
+      if (spotData?.createSpot) {
+        router.push(`/spots/${spotData.createSpot.id}`);
+      }
     }
   };
 

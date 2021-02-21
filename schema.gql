@@ -3,6 +3,11 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input CoordinatesInput {
+  latitude: Float!
+  longitude: Float!
+}
+
 type ImageSignature {
   signature: String!
   timestamp: Int!
@@ -10,8 +15,26 @@ type ImageSignature {
 
 type Mutation {
   createImageSignature: ImageSignature!
+  createSpot(input: SpotInput!): Spot
 }
 
 type Query {
   hello: String!
+}
+
+type Spot {
+  id: ID!
+  image: String!
+  latitude: Float!
+  longitude: Float!
+  publicId: String!
+  sports: String!
+  userId: String!
+}
+
+input SpotInput {
+  address: String!
+  coordinates: CoordinatesInput!
+  image: String!
+  sports: String!
 }

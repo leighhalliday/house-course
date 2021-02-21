@@ -1,6 +1,6 @@
 import { buildSchemaSync, Resolver, Query } from "type-graphql";
 import { ImageResolver } from "./image";
-// import { HouseResolver } from "./house";
+import { SpotResolver } from "./spot";
 import { authChecker } from "./auth";
 
 @Resolver()
@@ -12,7 +12,7 @@ class DummyResolver {
 }
 
 export const schema = buildSchemaSync({
-  resolvers: [DummyResolver, ImageResolver],
+  resolvers: [DummyResolver, ImageResolver, SpotResolver],
   emitSchemaFile: process.env.NODE_ENV === "development",
   authChecker,
 });
