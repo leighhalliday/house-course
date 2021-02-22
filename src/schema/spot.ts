@@ -73,6 +73,23 @@ class Spot {
 
   @Field((_type) => String)
   sports!: string;
+
+  @Field((_type) => [Spot])
+  async nearby(@Ctx() ctx: Context) {
+    const bounds = getBoundsOfDistance(
+      { latitude: this.latitude, longitude: this.longitude },
+      1000
+    );
+
+    return ctx.prisma.spot.findMany({
+      where: {
+        latitude: { gte: bounds[0].latitude, lte: bounds[1].latitude },
+        longitude: { gte: bounds[0].longitude, lte: bounds[1].longitude },
+        id: { not: { equals: this.id } },
+      },
+      take: 25,
+    });
+  }
 }
 
 @Resolver()

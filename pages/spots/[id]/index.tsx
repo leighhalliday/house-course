@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { Image } from "cloudinary-react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql, ApolloClient } from "@apollo/client";
 import Layout from "src/components/layout";
 // import HouseNav from "src/components/houseNav";
-// import SingleMap from "src/components/singleMap";
+import SingleMap from "src/components/singleMap";
 import {
   ShowSpotQuery,
   ShowSpotQueryVariables,
@@ -20,6 +20,11 @@ const SHOW_SPOT_QUERY = gql`
       sports
       latitude
       longitude
+      nearby {
+        id
+        latitude
+        longitude
+      }
     }
   }
 `;
@@ -64,7 +69,9 @@ function SpotData({ id }: { id: string }) {
 
             <p>Sports: {spot.sports}</p>
           </div>
-          <div className="sm:w-full md:w-1/2">Singlemap</div>
+          <div className="sm:w-full md:w-1/2">
+            <SingleMap spot={spot} nearby={spot.nearby} />
+          </div>
         </div>
       }
     />

@@ -126,7 +126,7 @@ export default function SpotForm({}: IProps) {
       <h1 className="text-xl">Add a New Spot</h1>
       <div className="mt-4">
         <label htmlFor="search" className="block">
-          Search for your address
+          Fill in the address of the spot
         </label>
         <SearchBox
           onSelectAddress={(address, latitude, longitude) => {

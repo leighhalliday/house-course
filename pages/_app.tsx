@@ -16,7 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             <title>SportySpots</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <Component {...pageProps} />;
+          <Component {...pageProps} />
         </ApolloProvider>
       </AuthProvider>
     </>

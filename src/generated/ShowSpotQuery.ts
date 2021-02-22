@@ -7,6 +7,13 @@
 // GraphQL query operation: ShowSpotQuery
 // ====================================================
 
+export interface ShowSpotQuery_spot_nearby {
+  __typename: "Spot";
+  id: string;
+  latitude: number;
+  longitude: number;
+}
+
 export interface ShowSpotQuery_spot {
   __typename: "Spot";
   id: string;
@@ -16,6 +23,7 @@ export interface ShowSpotQuery_spot {
   sports: string;
   latitude: number;
   longitude: number;
+  nearby: ShowSpotQuery_spot_nearby[];
 }
 
 export interface ShowSpotQuery {

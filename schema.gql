@@ -29,6 +29,7 @@ type Spot {
   image: String!
   latitude: Float!
   longitude: Float!
+  nearby: [Spot!]!
   publicId: String!
   sports: String!
   userId: String!
