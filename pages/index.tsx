@@ -14,12 +14,12 @@ export default function Home() {
       main={
         <div className="flex">
           <div
-            className="w-1/2 pb-4"
+            className="w-1/4 pb-4"
             style={{ maxHeight: "calc(100vh - 64px)", overflow: "scroll" }}
           >
             Spots
           </div>
-          <div className="w-1/2">
+          <div className="w-3/4">
             <Map />
           </div>
         </div>
