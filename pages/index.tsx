@@ -1,9 +1,9 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { useDebounce } from "use-debounce";
 import Layout from "src/components/layout";
 import Map from "src/components/map";
-// import HouseList from "src/components/houseList";
+import SpotList from "src/components/spotList";
 import { useLastData } from "src/utils/useLastData";
 import { useLocalState } from "src/utils/useLocalState";
 import { SpotsQuery, SpotsQueryVariables } from "src/generated/SpotsQuery";
@@ -38,6 +38,7 @@ const parseBounds = (boundsString: string) => {
 };
 
 export default function Home() {
+  const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const [dataBounds, setDatabounds] = useLocalState<string>(
     "bounds",
     "[[0,0],[0,0]]"
@@ -64,10 +65,17 @@ export default function Home() {
             className="w-1/4 pb-4"
             style={{ maxHeight: "calc(100vh - 64px)", overflow: "scroll" }}
           >
-            Spots
+            <SpotList
+              spots={lastData ? lastData.spots : []}
+              setHighlightedId={setHighlightedId}
+            />
           </div>
           <div className="w-3/4">
-            <Map setDataBounds={setDatabounds} />
+            <Map
+              setDataBounds={setDatabounds}
+              spots={lastData ? lastData.spots : []}
+              highlightedId={highlightedId}
+            />
           </div>
         </div>
       }

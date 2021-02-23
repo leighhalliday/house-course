@@ -28,3 +28,51 @@ input {
 .marker-active {
   z-index: 1;
 }
+
+/* Marker tweaks */
+.mapboxgl-popup-close-button {
+  position: relative;
+  top: 2px;
+  right: 4px;
+}
+
+.mapboxgl-popup-content {
+  font: 400 15px/22px "Source Sans Pro", "Helvetica Neue", Sans-serif;
+  padding: 0;
+  width: 180px;
+}
+
+.mapboxgl-popup-content-wrapper {
+  padding: 1%;
+}
+
+.mapboxgl-popup-content h3 {
+  color: #000;
+  margin: 0;
+  display: block;
+  padding-top: 4px;
+  border-radius: 4px 4px 0 0;
+  margin-top: -15px;
+}
+
+.mapboxgl-popup-content h4 {
+  margin: 0;
+  display: block;
+  padding: 4px;
+}
+
+.mapboxgl-popup-content div {
+  padding: 8px;
+}
+
+.mapboxgl-container .leaflet-marker-icon {
+  cursor: pointer;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+  margin-top: 8px;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+  border-bottom-color: #91c949;
+}

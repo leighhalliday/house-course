@@ -17,7 +17,7 @@ export default function SingleMap({ spot, nearby }: IProps) {
   const [viewport, setViewport] = useState({
     latitude: spot.latitude,
     longitude: spot.longitude,
-    zoom: 15,
+    zoom: 16,
   });
 
   return (
