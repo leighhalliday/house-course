@@ -3,6 +3,11 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input BoundsInput {
+  ne: CoordinatesInput!
+  sw: CoordinatesInput!
+}
+
 input CoordinatesInput {
   latitude: Float!
   longitude: Float!
@@ -21,6 +26,7 @@ type Mutation {
 type Query {
   hello: String!
   spot(id: String!): Spot
+  spots(bounds: BoundsInput!): [Spot!]
 }
 
 type Spot {
