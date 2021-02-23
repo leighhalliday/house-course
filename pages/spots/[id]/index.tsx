@@ -51,11 +51,11 @@ function SpotData({ id }: { id: string }) {
   return (
     <Layout
       main={
-        <div className="sm:block md:flex">
-          <div className="sm:w-full md:w-1/2 p-4">
-            <h1 className="text-3xl">{spot.address}</h1>
+        <div className="sm:block md:flex ">
+          <div className="sm:w-full md:w-1/2 p-8">
+            <h1 className="text-2xl mb-4">{spot.address}</h1>
             <Image
-              className="pb-2"
+              className="pb-8"
               cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
               publicId={spot.publicId}
               alt={spot.address}
