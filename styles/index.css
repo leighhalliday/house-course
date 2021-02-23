@@ -39,18 +39,18 @@ input {
 .mapboxgl-popup-content {
   font: 400 15px/22px "Source Sans Pro", "Helvetica Neue", Sans-serif;
   padding: 0;
-  width: 180px;
+  width: 200px;
 }
 
 .mapboxgl-popup-content-wrapper {
-  padding: 1%;
+  padding: 2%;
 }
 
 .mapboxgl-popup-content h3 {
   color: #000;
   margin: 0;
   display: block;
-  padding-top: 4px;
+  padding-top: 8px;
   border-radius: 4px 4px 0 0;
   margin-top: -15px;
 }
@@ -71,8 +71,4 @@ input {
 
 .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
   margin-top: 8px;
-}
-
-.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
-  border-bottom-color: #91c949;
 }
