@@ -10,8 +10,8 @@ const Layout: FunctionComponent<IProps> = ({ main }) => {
   const { logout, authenticated } = useAuth();
 
   return (
-    <div className="bg-gray-800 max-w-screen-3xl mx-auto text-white">
-      <nav className="bg-gray-900 " style={{ height: "64px" }}>
+    <div className="max-w-screen-3xl mx-auto text-white">
+      <nav className="bg-black-900 " style={{ height: "64px" }}>
         <div className="px-8 flex items-center justify-between h-16">
           <div>
             <Link href="/">
