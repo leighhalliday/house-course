@@ -3,16 +3,16 @@ import { useForm } from "react-hook-form";
 import { useMutation, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import Link from "next/link";
-// import { Image } from "cloudinary-react";
+import { Image } from "cloudinary-react";
 import { SearchBox } from "./searchBox";
 import {
   CreateSpotMutation,
   CreateSpotMutationVariables,
 } from "src/generated/CreateSpotMutation";
-// import {
-//   UpdateHouseMutation,
-//   UpdateHouseMutationVariables,
-// } from "src/generated/UpdateHouseMutation";
+import {
+  UpdateSpotMutation,
+  UpdateSpotMutationVariables,
+} from "src/generated/UpdateSpotMutation";
 import { CreateSignatureMutation } from "src/generated/CreateSignatureMutation";
 
 const SIGNATURE_MUTATION = gql`
@@ -28,6 +28,20 @@ const CREATE_SPOT_MUTATION = gql`
   mutation CreateSpotMutation($input: SpotInput!) {
     createSpot(input: $input) {
       id
+    }
+  }
+`;
+
+const UPDATE_SPOT_MUTATION = gql`
+  mutation UpdateSpotMutation($id: String!, $input: SpotInput!) {
+    updateSpot(id: $id, input: $input) {
+      id
+      image
+      publicId
+      latitude
+      longitude
+      sports
+      address
     }
   }
 `;
@@ -63,15 +77,35 @@ interface IFormData {
   image: FileList;
 }
 
-interface IProps {}
+interface ISpot {
+  id: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  sports: string;
+  image: string;
+  publicId: string;
+}
+interface IProps {
+  spot?: ISpot;
+}
 
-export default function SpotForm({}: IProps) {
+export default function SpotForm({ spot }: IProps) {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>();
   const { register, handleSubmit, setValue, errors, watch } = useForm<
     IFormData
-  >({ defaultValues: {} });
+  >({
+    defaultValues: spot
+      ? {
+          address: spot.address,
+          latitude: spot.latitude,
+          longitude: spot.longitude,
+          sports: spot.sports,
+        }
+      : {},
+  });
 
   const address = watch("address");
 
@@ -83,6 +117,10 @@ export default function SpotForm({}: IProps) {
     CreateSpotMutation,
     CreateSpotMutationVariables
   >(CREATE_SPOT_MUTATION);
+  const [updateSpot] = useMutation<
+    UpdateSpotMutation,
+    UpdateSpotMutationVariables
+  >(UPDATE_SPOT_MUTATION);
 
   useEffect(() => {
     register({ name: "address" }, { required: "Please enter an address" });
@@ -117,13 +155,56 @@ export default function SpotForm({}: IProps) {
     }
   };
 
+  const handleUpdate = async (currentSpot: ISpot, data: IFormData) => {
+    let image = currentSpot.image;
+
+    if (data.image[0]) {
+      const { data: signatureData } = await createSignature();
+      if (signatureData) {
+        const { signature, timestamp } = signatureData.createImageSignature;
+        const imageData = await uploadImage(
+          data.image[0],
+          signature,
+          timestamp
+        );
+        image = imageData.secure_url;
+      }
+    }
+
+    const { data: spotData } = await updateSpot({
+      variables: {
+        id: currentSpot.id,
+        input: {
+          address: data.address,
+          image: image,
+          coordinates: {
+            latitude: data.latitude,
+            longitude: data.longitude,
+          },
+          sports: data.sports,
+        },
+      },
+    });
+
+    if (spotData?.updateSpot) {
+      router.push(`/spots/${currentSpot.id}`);
+    }
+  };
+
   const onSubmit = (data: IFormData) => {
     setSubmitting(true);
-    handleCreate(data);
+    if (!!spot) {
+      handleUpdate(spot, data);
+    } else {
+      handleCreate(data);
+    }
   };
+
   return (
     <form className="mx-auto max-w-xl py-4" onSubmit={handleSubmit(onSubmit)}>
-      <h1 className="text-xl">Add a New Spot</h1>
+      <h1 className="text-xl">
+        {spot ? `Editing ${spot.address}` : "Add a New Spot"}
+      </h1>
       <div className="mt-4">
         <label htmlFor="search" className="block">
           Fill in the address of the spot
@@ -134,7 +215,7 @@ export default function SpotForm({}: IProps) {
             setValue("latitude", latitude);
             setValue("longitude", longitude);
           }}
-          defaultValue=""
+          defaultValue={spot ? spot.address : ""}
         />
         {errors.address && <p>{errors.address.message}</p>}
       </div>
@@ -156,7 +237,7 @@ export default function SpotForm({}: IProps) {
               style={{ display: "none" }}
               ref={register({
                 validate: (fileList: FileList) => {
-                  if (fileList.length === 1) return true;
+                  if (spot || fileList.length === 1) return true;
                   return "Please upload one file";
                 },
               })}
@@ -171,13 +252,27 @@ export default function SpotForm({}: IProps) {
                 }
               }}
             />
-            {previewImage && (
+            {previewImage ? (
               <img
                 src={previewImage}
                 className="mt-4 object-cover"
                 style={{ width: "576px", height: `${(9 / 16) * 576}px` }}
               />
-            )}
+            ) : spot ? (
+              <Image
+                className="mt-4"
+                cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
+                publicId={spot.publicId}
+                alt={spot.address}
+                secure
+                dpr="auto"
+                quality="auto"
+                width={576}
+                height={Math.floor((9 / 16) * 576)}
+                crop="fill"
+                gravity="auto"
+              />
+            ) : null}
             {errors.image && <p>{errors.image.message}</p>}
           </div>
           <div className="mt-4">
@@ -203,7 +298,7 @@ export default function SpotForm({}: IProps) {
             >
               Save
             </button>{" "}
-            <Link href="/">cancel</Link>
+            <Link href={spot ? `/spots/${spot.id}` : "/"}>cancel</Link>
           </div>
         </>
       )}

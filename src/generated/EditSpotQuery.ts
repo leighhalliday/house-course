@@ -3,26 +3,26 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { BoundsInput } from "./globalTypes";
-
 // ====================================================
-// GraphQL query operation: SpotsQuery
+// GraphQL query operation: EditSpotQuery
 // ====================================================
 
-export interface SpotsQuery_spots {
+export interface EditSpotQuery_spot {
   __typename: "Spot";
   id: string;
-  latitude: number;
-  longitude: number;
+  userId: string;
   address: string;
+  image: string;
   publicId: string;
   sports: string;
+  latitude: number;
+  longitude: number;
 }
 
-export interface SpotsQuery {
-  spots: SpotsQuery_spots[] | null;
+export interface EditSpotQuery {
+  spot: EditSpotQuery_spot | null;
 }
 
-export interface SpotsQueryVariables {
-  bounds: BoundsInput;
+export interface EditSpotQueryVariables {
+  id: string;
 }

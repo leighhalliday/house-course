@@ -21,6 +21,7 @@ type ImageSignature {
 type Mutation {
   createImageSignature: ImageSignature!
   createSpot(input: SpotInput!): Spot
+  updateSpot(id: String!, input: SpotInput!): Spot
 }
 
 type Query {
