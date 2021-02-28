@@ -158,4 +158,21 @@ export class SpotResolver {
       },
     });
   }
+
+  @Authorized()
+  @Mutation((_returns) => Boolean, { nullable: false })
+  async deleteSpot(
+    @Arg("id") id: string,
+    @Ctx() ctx: AuthorizedContext
+  ): Promise<boolean> {
+    const spotId = parseInt(id, 10);
+    const spot = await ctx.prisma.spot.findOne({ where: { id: spotId } });
+
+    if (!spot || spot.userId !== ctx.uid) return false;
+
+    await ctx.prisma.spot.delete({
+      where: { id: spotId },
+    });
+    return true;
+  }
 }

@@ -21,11 +21,11 @@ type ImageSignature {
 type Mutation {
   createImageSignature: ImageSignature!
   createSpot(input: SpotInput!): Spot
+  deleteSpot(id: String!): Boolean!
   updateSpot(id: String!, input: SpotInput!): Spot
 }
 
 type Query {
-  hello: String!
   spot(id: String!): Spot
   spots(bounds: BoundsInput!): [Spot!]
 }
