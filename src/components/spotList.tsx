@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Image } from "cloudinary-react";
+import { Image, Transformation } from "cloudinary-react";
 import { SpotsQuery_spots } from "src/generated/SpotsQuery";
 
 interface IProps {
@@ -31,7 +31,9 @@ export default function SpotList({ spots, setHighlightedId }: IProps) {
                   height={Math.floor((9 / 16) * 320)}
                   crop="fill"
                   gravity="auto"
-                />
+                >
+                  <Transformation defaultImage="default-image_ltmvxz.jpg" />
+                </Image>
                 <div className="sm-w-full sm:pl-4">
                   <h2 className="text-lg">{spot.address}</h2>
                   <p className="pb-2 text-gray-200">Sport: {spot.sports}</p>

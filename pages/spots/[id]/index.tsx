@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Image } from "cloudinary-react";
+import { Image, Transformation } from "cloudinary-react";
 import { useQuery, gql, ApolloClient } from "@apollo/client";
 import Layout from "src/components/layout";
 import SpotNav from "src/components/spotNav";
@@ -67,7 +67,9 @@ function SpotData({ id }: { id: string }) {
               height={Math.floor((9 / 16) * 900)}
               crop="fill"
               gravity="auto"
-            />
+            >
+              <Transformation defaultImage="default-image_ltmvxz.jpg" />
+            </Image>
 
             <p>Sports: {spot.sports}</p>
           </div>
