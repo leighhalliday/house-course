@@ -10,7 +10,7 @@ import {
   EditSpotQueryVariables,
 } from "src/generated/EditSpotQuery";
 
-const EDIT_HOUSE_QUERY = gql`
+const EDIT_SPOT_QUERY = gql`
   query EditSpotQuery($id: String!) {
     spot(id: $id) {
       id
@@ -39,7 +39,7 @@ export default function EditHouse() {
 function SpotData({ id }: { id: string }) {
   const { user } = useAuth();
   const { data, loading } = useQuery<EditSpotQuery, EditSpotQueryVariables>(
-    EDIT_HOUSE_QUERY,
+    EDIT_SPOT_QUERY,
     { variables: { id } }
   );
 

@@ -8,7 +8,7 @@ import {
   ShowSpotQuery,
   ShowSpotQueryVariables,
 } from "src/generated/ShowSpotQuery";
-import EditHouse from "./edit";
+import EditSpot from "./edit";
 
 const SHOW_SPOT_QUERY = gql`
   query ShowSpotQuery($id: String!) {
