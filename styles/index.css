@@ -23,6 +23,10 @@ input {
   border-radius: 5px;
 }
 
+input:checked + svg {
+  display: block;
+}
+
 /* Custom Classes */
 
 .marker-active {

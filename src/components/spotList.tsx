@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Image, Transformation } from "cloudinary-react";
 import { SpotsQuery_spots } from "src/generated/SpotsQuery";
 
+import SpotFilter from "./spotFilter";
+
 interface IProps {
   spots: SpotsQuery_spots[];
   setHighlightedId: (id: string | null) => void;
@@ -10,6 +12,7 @@ interface IProps {
 export default function SpotList({ spots, setHighlightedId }: IProps) {
   return (
     <>
+      <SpotFilter spots={spots} />
       {spots.map((spot) => (
         <Link key={spot.id} href={`/spots/${spot.id}`}>
           <div
