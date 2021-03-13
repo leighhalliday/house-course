@@ -72,7 +72,7 @@ function ReadySearchBox({ onSelectAddress, defaultValue }: ISearchBoxProps) {
   //   console.log({ status, data });
 
   return (
-    <Combobox onSelect={handleSelect}>
+    <Combobox className="z-10" onSelect={handleSelect}>
       <ComboboxInput
         id="search"
         value={value}

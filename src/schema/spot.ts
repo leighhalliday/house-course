@@ -114,7 +114,7 @@ export class SpotResolver {
         latitude: { gte: bounds.sw.latitude, lte: bounds.ne.latitude },
         longitude: { gte: bounds.sw.longitude, lte: bounds.ne.longitude },
       },
-      take: 50,
+      take: 500,
     });
   }
 

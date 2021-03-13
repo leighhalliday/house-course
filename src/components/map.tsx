@@ -31,7 +31,7 @@ export default function Map({ setDataBounds, spots, highlightedId }: IProps) {
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         ref={(instance) => (mapRef.current = instance)}
-        minZoom={10}
+        minZoom={13}
         maxZoom={15}
         mapStyle={"mapbox://styles/sezayi/ckkjxz1uw2a9017nwzr3wfimk"}
         onLoad={() => {
@@ -47,7 +47,7 @@ export default function Map({ setDataBounds, spots, highlightedId }: IProps) {
           }
         }}
       >
-        <div className="top-0 z-10 p-4 flex justify-end">
+        <div className="top-0 left-0 z-10 p-4 flex justify-end">
           <div className="w-1/2">
             <SearchBox
               defaultValue=""

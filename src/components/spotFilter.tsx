@@ -12,6 +12,12 @@ export default function SpotFilter({ spots }: IProps) {
     setToggle(!toggle);
   };
 
+  const spotSports = spots.map((spot) => spot.sports);
+
+  const sports: any = spotSports.filter(
+    (sport, index) => spotSports.indexOf(sport) === index
+  );
+
   return (
     <div className="w-full h-24 p-8">
       <a
@@ -28,10 +34,10 @@ export default function SpotFilter({ spots }: IProps) {
               Filter on a sport type
             </div>
             <div className="bg-gray-700 p-6">
-              {spots.map((spot) => (
+              {sports.map((sport: any) => (
                 <div className="py-2">
                   <label
-                    key={spot.id}
+                    key={sport.id}
                     className="flex justify-start items-start"
                   >
                     <div className="bg-white border-2 rounded w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
@@ -43,7 +49,7 @@ export default function SpotFilter({ spots }: IProps) {
                         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
                       </svg>
                     </div>
-                    <div className="select-none">{spot.sports}</div>
+                    <div className="select-none">{sport.toUpperCase()}</div>
                   </label>
                 </div>
               ))}
