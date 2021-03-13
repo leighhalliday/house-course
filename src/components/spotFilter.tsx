@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { SpotsQuery_spots } from "src/generated/SpotsQuery";
+import useOutsideClick from "../utils/useOutsideClick";
 
 interface IProps {
   spots: SpotsQuery_spots[];
@@ -7,6 +8,12 @@ interface IProps {
 
 export default function SpotFilter({ spots }: IProps) {
   const [toggle, setToggle] = useState(false);
+
+  const ref: any = useRef();
+
+  useOutsideClick(ref, () => {
+    setToggle(!toggle);
+  });
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -28,7 +35,7 @@ export default function SpotFilter({ spots }: IProps) {
         Type of sport
       </a>
       {toggle ? (
-        <div className="absolute max-w-2xl mx-auto pt-4 border-white">
+        <div ref={ref} className="absolute max-w-2xl mx-auto pt-4 border-white">
           <div className="shadow-md text-gray-100 border-white">
             <div className="px-6 pt-8 bg-gray-700 rounded-lg rounded-b-none font-bold">
               Filter on a sport type
