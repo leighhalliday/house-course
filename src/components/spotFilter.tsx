@@ -1,12 +1,17 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { SpotsQuery_spots } from "src/generated/SpotsQuery";
 import useOutsideClick from "../utils/useOutsideClick";
-
+import { SportFilterContext } from "../context/sportFilter";
 interface IProps {
   spots: SpotsQuery_spots[];
 }
 
 export default function SpotFilter({ spots }: IProps) {
+  const { filteredSports, setFilteredSports } = useContext(SportFilterContext);
+  const [currentFilteredSports, setCurrentFilteredSports] = useState<string[]>(
+    filteredSports
+  );
+
   const [toggle, setToggle] = useState(false);
 
   const ref: any = useRef();
@@ -21,9 +26,27 @@ export default function SpotFilter({ spots }: IProps) {
 
   const spotSports = spots.map((spot) => spot.sports);
 
-  const sports: any = spotSports.filter(
+  const sports = spotSports.filter(
     (sport, index) => spotSports.indexOf(sport) === index
   );
+
+  const handleCheckSport = (sport: string) => {
+    if (currentFilteredSports.includes(sport)) {
+      setCurrentFilteredSports(
+        currentFilteredSports.filter((s) => s !== sport)
+      );
+    } else {
+      setCurrentFilteredSports([...currentFilteredSports, sport]);
+    }
+  };
+
+  const handleSubmit = () => {
+    setFilteredSports(currentFilteredSports);
+  };
+
+  const handleClear = () => {
+    setCurrentFilteredSports([]);
+  };
 
   return (
     <div className="w-full h-24 p-8">
@@ -41,14 +64,16 @@ export default function SpotFilter({ spots }: IProps) {
               Filter on a sport type
             </div>
             <div className="bg-gray-700 p-6">
-              {sports.map((sport: any) => (
-                <div className="py-2">
-                  <label
-                    key={sport.id}
-                    className="flex justify-start items-start"
-                  >
+              {sports.map((sport) => (
+                <div key={sport} className="py-2">
+                  <label className="flex justify-start items-start">
                     <div className="bg-white border-2 rounded w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-                      <input type="checkbox" className="opacity-0 absolute" />
+                      <input
+                        type="checkbox"
+                        className="opacity-0 absolute"
+                        checked={currentFilteredSports.includes(sport)}
+                        onChange={() => handleCheckSport(sport)}
+                      />
                       <svg
                         className="fill-current hidden w-4 h-4 text-green-500 pointer-events-none"
                         viewBox="0 0 20 20"
@@ -63,12 +88,20 @@ export default function SpotFilter({ spots }: IProps) {
             </div>
 
             <div className="p-6 bg-gray-700 rounded-lg rounded-t-none text-right">
-              <a
+              <button
+                onClick={handleClear}
+                type="button"
+                className="text-sm text-white font-bold py-3 md:px-8 px-4 uppercase"
+              >
+                clear filters
+              </button>
+              <button
                 className="bg-green-800 shadow-md text-sm text-white font-bold py-3 md:px-8 px-4 hover:bg-green-600 rounded uppercase"
-                href="#"
+                type="button"
+                onClick={() => handleSubmit()}
               >
                 Save
-              </a>
+              </button>
             </div>
           </div>
         </div>

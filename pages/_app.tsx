@@ -3,6 +3,7 @@ import Head from "next/head";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "src/apollo";
 import { AuthProvider } from "src/auth/useAuth";
+import { SportFilterProvider } from "src/context/sportFilter";
 import "../styles/index.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -12,11 +13,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <>
       <AuthProvider>
         <ApolloProvider client={client}>
-          <Head>
-            <title>SportySpots</title>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
-          <Component {...pageProps} />
+          <SportFilterProvider>
+            <Head>
+              <title>SportySpots</title>
+              <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <Component {...pageProps} />
+          </SportFilterProvider>
         </ApolloProvider>
       </AuthProvider>
     </>

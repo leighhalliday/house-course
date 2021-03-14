@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Image, Transformation } from "cloudinary-react";
 import { SpotsQuery_spots } from "src/generated/SpotsQuery";
-
+import { useContext, useMemo } from "react";
+import { SportFilterContext } from "../context/sportFilter";
 import SpotFilter from "./spotFilter";
 
 interface IProps {
@@ -10,10 +11,15 @@ interface IProps {
 }
 
 export default function SpotList({ spots, setHighlightedId }: IProps) {
+  const { filteredSports } = useContext(SportFilterContext);
+  const filteredSpots = useMemo(
+    () => spots.filter((spot) => filteredSports.includes(spot.sports)),
+    [spots, filteredSports]
+  );
   return (
     <>
       <SpotFilter spots={spots} />
-      {spots.map((spot) => (
+      {filteredSpots.map((spot) => (
         <Link key={spot.id} href={`/spots/${spot.id}`}>
           <div
             className="px-8 pt-4 cursor-pointer flex flex-row"
