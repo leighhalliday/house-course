@@ -40,8 +40,9 @@ export default function SpotFilter({ spots }: IProps) {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSave = () => {
     setFilteredSports(currentFilteredSports);
+    handleToggle();
   };
 
   const handleClear = () => {
@@ -55,7 +56,9 @@ export default function SpotFilter({ spots }: IProps) {
         onClick={() => handleToggle()}
         className="hover:border-white text-white text-sm px-4 py-2 border border-gray-500 rounded-full"
       >
-        Type of sport
+        {currentFilteredSports.length > 0
+          ? currentFilteredSports.join(" + ")
+          : "Filter on sport"}
       </a>
       {toggle ? (
         <div ref={ref} className="absolute max-w-2xl mx-auto pt-4 border-white">
@@ -98,7 +101,7 @@ export default function SpotFilter({ spots }: IProps) {
               <button
                 className="bg-green-800 shadow-md text-sm text-white font-bold py-3 md:px-8 px-4 hover:bg-green-600 rounded uppercase"
                 type="button"
-                onClick={() => handleSubmit()}
+                onClick={() => handleSave()}
               >
                 Save
               </button>

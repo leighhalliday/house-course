@@ -63,8 +63,6 @@ export const SportFilterProvider: React.FC = ({ children }) => {
     }
   );
 
-  //   const data = { spots: [] as Array<{ sports: string }> };
-
   useEffect(() => {
     const spots = data?.spots;
 

@@ -95,7 +95,7 @@ class Spot {
         longitude: { gte: bounds[0].longitude, lte: bounds[1].longitude },
         id: { not: { equals: this.id } },
       },
-      take: 25,
+      take: 50,
     });
   }
 }

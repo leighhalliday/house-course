@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 import { useQuery, gql } from "@apollo/client";
 import { useDebounce } from "use-debounce";
 import Layout from "src/components/layout";
@@ -58,27 +59,33 @@ export default function Home() {
   if (error) return <Layout main={<div>Error loadding spots</div>} />;
 
   return (
-    <Layout
-      main={
-        <div className="flex">
-          <div
-            className="w-2/5 pb-4"
-            style={{ maxHeight: "calc(100vh - 64px)", overflow: "scroll" }}
-          >
-            <SpotList
-              spots={lastData ? lastData.spots : []}
-              setHighlightedId={setHighlightedId}
-            />
+    <>
+      <Head>
+        <title>SportySpots - Buiten sporten in Amsterdam</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Layout
+        main={
+          <div className="flex">
+            <div
+              className="w-2/5 pb-4"
+              style={{ maxHeight: "calc(100vh - 64px)", overflow: "scroll" }}
+            >
+              <SpotList
+                spots={lastData ? lastData.spots : []}
+                setHighlightedId={setHighlightedId}
+              />
+            </div>
+            <div className="w-3/5">
+              <Map
+                setDataBounds={setDatabounds}
+                spots={lastData ? lastData.spots : []}
+                highlightedId={highlightedId}
+              />
+            </div>
           </div>
-          <div className="w-3/5">
-            <Map
-              setDataBounds={setDatabounds}
-              spots={lastData ? lastData.spots : []}
-              highlightedId={highlightedId}
-            />
-          </div>
-        </div>
-      }
-    />
+        }
+      />
+    </>
   );
 }
