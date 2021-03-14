@@ -51,7 +51,7 @@ export default function Map({ setDataBounds, spots, highlightedId }: IProps) {
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         ref={(instance) => (mapRef.current = instance)}
-        minZoom={10}
+        minZoom={12}
         maxZoom={15}
         mapStyle={"mapbox://styles/sezayi/ckkjxz1uw2a9017nwzr3wfimk"}
         onLoad={() => {
