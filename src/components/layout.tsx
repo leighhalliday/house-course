@@ -26,7 +26,7 @@ const Layout: FunctionComponent<IProps> = ({ main }) => {
           </div>
 
           <div>
-            {authenticated ? (
+            {/* {authenticated ? (
               <>
                 <Link href="/spots/add">
                   <a>add a spot</a>
@@ -39,7 +39,7 @@ const Layout: FunctionComponent<IProps> = ({ main }) => {
               <Link href="/auth">
                 <a>Login / Signup</a>
               </Link>
-            )}
+            )} */}
           </div>
         </div>
       </nav>

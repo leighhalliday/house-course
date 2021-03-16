@@ -60,10 +60,6 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>SportySpots - Buiten sporten in Amsterdam</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
       <Layout
         main={
           <div className="flex">

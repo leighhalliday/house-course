@@ -15,7 +15,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <ApolloProvider client={client}>
           <SportFilterProvider>
             <Head>
-              <title>SportySpots</title>
+              <title>SportySpots - Buiten sporten in Amsterdam</title>
               <link rel="icon" href="/favicon.ico" />
             </Head>
             <Component {...pageProps} />
