@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Head from "next/head";
 import { useQuery, gql } from "@apollo/client";
 import { useDebounce } from "use-debounce";
 import Layout from "src/components/layout";

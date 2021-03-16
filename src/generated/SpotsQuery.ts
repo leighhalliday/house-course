@@ -20,7 +20,7 @@ export interface SpotsQuery_spots {
 }
 
 export interface SpotsQuery {
-  spots: SpotsQuery_spots[] | null;
+  spots: SpotsQuery_spots[];
 }
 
 export interface SpotsQueryVariables {
