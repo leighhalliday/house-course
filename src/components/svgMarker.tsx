@@ -8,8 +8,8 @@ export const SvgMarker: React.FC<{ baseColor: string }> = ({ baseColor }) => {
 
   return (
     <svg
-      width="40px"
-      height="80px"
+      width="20px"
+      height="40px"
       viewBox="0 0 92 127"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

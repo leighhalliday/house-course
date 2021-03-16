@@ -7,16 +7,16 @@ import { SPORTS } from "../utils/sports";
 type Sport = typeof SPORTS[number];
 
 const sportColorMap: Record<Sport, string> = {
-  BASKETBAL: "green",
+  BASKETBAL: "orange",
   BEACHVOLLEY: "red",
   FITNESS: "blue",
-  JEUDEBOULES: "yellow",
-  OVERIG: "orange",
+  JEUDEBOULES: "brown",
+  OVERIG: "yellow",
   SKATE: "purple",
   SWIMMING: "magenta",
   TAFELTENNIS: "gray",
   TENNIS: "black",
-  VOETBAL: "brown",
+  VOETBAL: "green",
   voetbal: "#00ff00",
 };
 

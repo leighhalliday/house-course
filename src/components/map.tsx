@@ -48,8 +48,8 @@ export default function Map({ setDataBounds, spots, highlightedId }: IProps) {
 
   const search = useMemo(
     () => (
-      <div className="top-0 left-0 z-10 p-4 flex justify-end">
-        <div className="w-1/2">
+      <div className="top-0 left-0 absolute z-50 p-2 flex w-full">
+        <div className="w-full">
           <SearchBox
             defaultValue=""
             onSelectAddress={(_address, latitude, longitude) => {

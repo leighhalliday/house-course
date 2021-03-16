@@ -2,7 +2,26 @@ import { useState } from "react";
 import Link from "next/link";
 import ReactMapGL, { Marker, NavigationControl } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import SvgMarker from "./svgMarker";
+import { SPORTS } from "../utils/sports";
 
+type Sport = typeof SPORTS[number];
+
+const sportColorMap: Record<Sport, string> = {
+  BASKETBAL: "orange",
+  BEACHVOLLEY: "red",
+  FITNESS: "blue",
+  JEUDEBOULES: "brown",
+  OVERIG: "yellow",
+  SKATE: "purple",
+  SWIMMING: "magenta",
+  TAFELTENNIS: "gray",
+  TENNIS: "black",
+  VOETBAL: "green",
+  voetbal: "#00ff00",
+};
+
+const DEFAULT_COLOR = "#ffff00";
 interface ISpot {
   id: string;
   latitude: number;
@@ -17,7 +36,7 @@ export default function SingleMap({ spot, nearby }: IProps) {
   const [viewport, setViewport] = useState({
     latitude: spot.latitude,
     longitude: spot.longitude,
-    zoom: 16,
+    zoom: 17,
   });
 
   return (
@@ -45,7 +64,7 @@ export default function SingleMap({ spot, nearby }: IProps) {
           <button type="button">
             <img
               src="/spot-marker.svg"
-              className="w-8"
+              className="w-6 z-10"
               alt="selected spot"
             ></img>
           </button>
@@ -61,11 +80,11 @@ export default function SingleMap({ spot, nearby }: IProps) {
           >
             <Link href={`/spots/${near.id}`}>
               <a>
-                <img
-                  src="/spot-nearby-marker.svg"
-                  className="w-8"
-                  alt="nearby spot"
-                ></img>
+                <SvgMarker
+                  baseColor={
+                    sportColorMap[spot.sports as Sport] ?? DEFAULT_COLOR
+                  }
+                />
               </a>
             </Link>
           </Marker>
