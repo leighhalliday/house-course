@@ -80,11 +80,7 @@ export default function SingleMap({ spot, nearby }: IProps) {
           >
             <Link href={`/spots/${near.id}`}>
               <a>
-                <SvgMarker
-                  baseColor={
-                    sportColorMap[spot.sports as Sport] ?? DEFAULT_COLOR
-                  }
-                />
+                <SvgMarker baseColor={DEFAULT_COLOR} />
               </a>
             </Link>
           </Marker>
