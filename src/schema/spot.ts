@@ -75,8 +75,12 @@ class Spot {
 
   @Field((_type) => String)
   publicId(): string {
-    const parts = this.image.split("/");
-    return parts[parts.length - 1];
+    const match = this.image.match(/.*\/v\d*\/(.*)$/);
+    if (match && match.length === 2) {
+      return match[1];
+    } else {
+      return "default-image_ltmvxz.jpg";
+    }
   }
 
   @Field((_type) => String)
@@ -95,7 +99,7 @@ class Spot {
         longitude: { gte: bounds[0].longitude, lte: bounds[1].longitude },
         id: { not: { equals: this.id } },
       },
-      take: 50,
+      take: 1000,
     });
   }
 }
