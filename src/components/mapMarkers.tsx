@@ -8,9 +8,9 @@ type Sport = typeof SPORTS[number];
 
 const sportColorMap: Record<Sport, string> = {
   BASKETBAL: "orange",
-  BEACHVOLLEY: "red",
+  BEACHVOLLEY: "BurlyWood",
   FITNESS: "blue",
-  JEUDEBOULES: "brown",
+  JEUDEBOULES: "fuchsia",
   OVERIG: "yellow",
   SKATE: "purple",
   SWIMMING: "magenta",
