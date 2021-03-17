@@ -56,8 +56,8 @@ export default function SpotFilter({ spots }: IProps) {
         onClick={() => handleToggle()}
         className="hover:border-white text-white text-sm px-4 py-2 border border-gray-500 rounded-full"
       >
-        {currentFilteredSports.length > 0
-          ? currentFilteredSports.join(" + ")
+        {currentFilteredSports.length > 0 && currentFilteredSports.length < 2
+          ? currentFilteredSports[0]
           : "Filter on sport"}
       </a>
       {toggle ? (
