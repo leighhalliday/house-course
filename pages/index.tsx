@@ -61,9 +61,9 @@ export default function Home() {
     <>
       <Layout
         main={
-          <div className="flex">
+          <div className="flex flex-col-reverse lg:flex lg:flex-row">
             <div
-              className="w-2/5 pb-4"
+              className="lg:w-2/5 pb-4"
               style={{ maxHeight: "calc(100vh - 64px)", overflow: "scroll" }}
             >
               <SpotList
@@ -71,7 +71,7 @@ export default function Home() {
                 setHighlightedId={setHighlightedId}
               />
             </div>
-            <div className="w-3/5">
+            <div className="lg:w-3/5">
               <Map
                 setDataBounds={setDatabounds}
                 spots={lastData ? lastData.spots : []}
