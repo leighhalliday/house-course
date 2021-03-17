@@ -49,6 +49,23 @@ export default function SpotFilter({ spots }: IProps) {
     setCurrentFilteredSports([]);
   };
 
+  const handleSelectAll = () => {
+    setCurrentFilteredSports([
+      "FITNESS",
+      "SWIMMING",
+      "SKATE",
+      "TENNIS",
+      "BASKETBAL",
+      "VOETBAL",
+      "JEUDEBOULES",
+      "TAFELTENNIS",
+      "BEACHVOLLEY",
+      "OVERIG",
+    ]);
+  };
+
+  console.log(currentFilteredSports);
+
   return (
     <div className="w-full h-24 p-8">
       <a
@@ -63,9 +80,19 @@ export default function SpotFilter({ spots }: IProps) {
       {toggle ? (
         <div ref={ref} className="absolute max-w-2xl mx-auto pt-4 border-white">
           <div className="shadow-md text-gray-100 border-white">
-            <div className="px-6 pt-8 bg-gray-700 rounded-lg rounded-b-none font-bold">
+            <div className="px-6 pt-8 bg-gray-700 text-lg rounded-lg rounded-b-none font-bold">
               Filter on a sport type
             </div>
+            <div className="bg-gray-700">
+              <button
+                type="button"
+                className="text-sm text-white font-bold md:px-6 px-4 mt-6 underline uppercase"
+                onClick={() => handleSelectAll()}
+              >
+                Select all sports
+              </button>
+            </div>
+
             <div className="bg-gray-700 p-6">
               {sports.map((sport) => (
                 <div key={sport} className="py-2">
@@ -94,7 +121,7 @@ export default function SpotFilter({ spots }: IProps) {
               <button
                 onClick={handleClear}
                 type="button"
-                className="text-sm text-white font-bold py-3 md:px-8 px-4 uppercase"
+                className=" bg-yellow-600 shadow-md text-sm text-white font-bold py-3 md:px-8 px-4 mr-4 hover:bg-yellow-400 rounded uppercase"
               >
                 clear filters
               </button>
