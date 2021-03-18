@@ -9,6 +9,7 @@ import {
   ShowSpotQueryVariables,
 } from "src/generated/ShowSpotQuery";
 import EditSpot from "./edit";
+import SpotReview from "src/components/spotReview";
 
 const SHOW_SPOT_QUERY = gql`
   query ShowSpotQuery($id: String!) {
@@ -70,6 +71,7 @@ function SpotData({ id }: { id: string }) {
             >
               <Transformation defaultImage="default-image_ltmvxz.jpg" />
             </Image>
+            <SpotReview />
 
             <p>Sports: {spot.sports}</p>
           </div>
