@@ -13,7 +13,7 @@ const Layout: FunctionComponent<IProps> = ({ main }) => {
     <div className="max-w-screen-3xl mx-auto text-white">
       <nav className="bg-black-900 " style={{ height: "64px" }}>
         <div className="px-8 flex items-center justify-between h-16">
-          <div>
+          <div className="flex items-center ">
             <Link href="/">
               <a>
                 <img
@@ -23,6 +23,11 @@ const Layout: FunctionComponent<IProps> = ({ main }) => {
                 />
               </a>
             </Link>
+            <div className="text-lg px-8">
+              <p className="font-sans font-medium">
+                Find public spaces to play sports in Amsterdam
+              </p>
+            </div>
           </div>
 
           <div>

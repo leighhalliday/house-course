@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   theme: {
@@ -13,6 +14,9 @@ module.exports = {
       yellow: colors.amber,
       green: colors.emerald,
     },
+    fontFamily: {
+      sans: ["Rajdhani", ...defaultTheme.fontFamily.sans],
+    },
   },
   future: {
     removeDeprecatedGapUtilities: true,
@@ -22,6 +26,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {},
+    },
+    fontFamily: {
+      sans: ["Rajdhani", ...defaultTheme.fontFamily.sans],
     },
   },
   screens: {
@@ -40,6 +47,7 @@ module.exports = {
     "2xl": "1536px",
     // => @media (min-width: 1536px) { ... }
   },
+
   variants: {},
   plugins: [],
 };

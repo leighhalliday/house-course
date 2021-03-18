@@ -1,3 +1,7 @@
+/* Custom Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&display=swap');
+
+
 @tailwind base;
 
 /* Write your own custom base styles here */
@@ -31,6 +35,28 @@ input:checked + svg {
 
 .marker-active {
   z-index: 1;
+}
+
+@font-face {
+  font-family: "Rajdhani";
+  src: url("/fonts/Rajdhani-Light.ttf");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: url("/fonts/Rajdhani-Medium.ttf");
+  font-style: medium;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: url("/fonts/Rajdhani-Bold.ttf");
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
 }
 
 /* Marker tweaks */

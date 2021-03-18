@@ -69,7 +69,7 @@ export default function SpotFilter({ spots }: IProps) {
       <a
         role="button"
         onClick={() => handleToggle()}
-        className="hover:border-white text-white text-sm px-4 py-2 border border-gray-500 rounded-full"
+        className="hover:border-white text-white font-medium text-lg px-4 py-2 border border-gray-500 rounded-full"
       >
         {currentFilteredSports.length > 0 && currentFilteredSports.length < 2
           ? currentFilteredSports[0]
