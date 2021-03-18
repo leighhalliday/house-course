@@ -10,6 +10,7 @@ import {
 } from "src/generated/ShowSpotQuery";
 import EditSpot from "./edit";
 import SpotReview from "src/components/spotReview";
+import { useAuth } from "src/auth/useAuth";
 
 const SHOW_SPOT_QUERY = gql`
   query ShowSpotQuery($id: String!) {
@@ -49,6 +50,8 @@ function SpotData({ id }: { id: string }) {
 
   const { spot } = data;
 
+  const { authenticated } = useAuth();
+
   return (
     <Layout
       main={
@@ -71,7 +74,14 @@ function SpotData({ id }: { id: string }) {
             >
               <Transformation defaultImage="default-image_ltmvxz.jpg" />
             </Image>
-            <SpotReview />
+            {authenticated ? (
+              <div className="flex mb-4 justify-end">
+                <p className="pr-4">Review this spot</p>
+                <SpotReview />
+              </div>
+            ) : (
+              <div></div>
+            )}
 
             <p>Sports: {spot.sports}</p>
           </div>
