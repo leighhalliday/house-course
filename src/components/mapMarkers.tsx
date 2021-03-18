@@ -22,6 +22,8 @@ const sportColorMap: Record<Sport, string> = {
 
 const DEFAULT_COLOR = "#ffff00";
 
+const HIGHLIGHT_COLOR = "#FF0000";
+
 interface MapMarkersProps {
   spots: SpotsQuery_spots[];
   highlightedId: string | null;
@@ -40,7 +42,7 @@ const MapMarkers: React.FC<MapMarkersProps> = ({
         longitude={spot.longitude}
         offsetLeft={-15}
         offsetTop={-15}
-        className={highlightedId === spot.id ? "marker-active" : ""}
+        // className={highlightedId === spot.id ? "marker-active" : ""}
       >
         <button
           type="button"
@@ -48,7 +50,11 @@ const MapMarkers: React.FC<MapMarkersProps> = ({
           onClick={() => onSelect(spot)}
         >
           <SvgMarker
-            baseColor={sportColorMap[spot.sports as Sport] ?? DEFAULT_COLOR}
+            baseColor={
+              highlightedId === spot.id
+                ? HIGHLIGHT_COLOR
+                : sportColorMap[spot.sports as Sport]
+            }
           />
         </button>
       </Marker>

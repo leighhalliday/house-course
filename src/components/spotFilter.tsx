@@ -64,8 +64,6 @@ export default function SpotFilter({ spots }: IProps) {
     ]);
   };
 
-  console.log(currentFilteredSports);
-
   return (
     <div className="w-full h-24 p-8">
       <a
