@@ -59,7 +59,7 @@ function SpotData({ id }: { id: string }) {
           <div className="sm:w-full md:w-1/2 p-8">
             <SpotNav spot={spot} />
 
-            <h1 className="text-2xl mb-4">{spot.address}</h1>
+            <h1 className="text-4xl mb-4">{spot.address}</h1>
             <Image
               className="pb-8"
               cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
