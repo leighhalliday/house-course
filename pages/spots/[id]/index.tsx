@@ -75,8 +75,8 @@ function SpotData({ id }: { id: string }) {
               <Transformation defaultImage="default-image_ltmvxz.jpg" />
             </Image>
             {authenticated ? (
-              <div className="flex mb-4 justify-end">
-                <p className="pr-4">Review this spot</p>
+              <div className="flex mb-4">
+                <p className="pr-2">Review this spot:</p>
                 <SpotReview />
               </div>
             ) : (
