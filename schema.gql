@@ -21,12 +21,14 @@ type ImageSignature {
 type Mutation {
   createImageSignature: ImageSignature!
   createSpot(input: SpotInput!): Spot
+  createSpotReview(input: SpotReviewInput!): SpotReview
   deleteSpot(id: String!): Boolean!
   updateSpot(id: String!, input: SpotInput!): Spot
 }
 
 type Query {
   spot(id: String!): Spot
+  spotReview(id: String!): SpotReview
   spots(bounds: BoundsInput!): [Spot!]
 }
 
@@ -38,6 +40,7 @@ type Spot {
   longitude: Float!
   nearby: [Spot!]!
   publicId: String!
+  reviews: [SpotReview!]!
   sports: String!
   userId: String!
 }
@@ -47,4 +50,19 @@ input SpotInput {
   coordinates: CoordinatesInput!
   image: String!
   sports: String!
+}
+
+type SpotReview {
+  comments: String!
+  creator: String!
+  id: ID!
+  rating: Int!
+  spot: Spot!
+  spotId: ID!
+}
+
+input SpotReviewInput {
+  comments: String!
+  rating: Int!
+  spotId: ID!
 }

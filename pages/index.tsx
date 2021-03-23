@@ -7,19 +7,7 @@ import SpotList from "src/components/spotList";
 import { useLastData } from "src/utils/useLastData";
 import { useLocalState } from "src/utils/useLocalState";
 import { SpotsQuery, SpotsQueryVariables } from "src/generated/SpotsQuery";
-
-const SPOTS_QUERY = gql`
-  query SpotsQuery($bounds: BoundsInput!) {
-    spots(bounds: $bounds) {
-      id
-      latitude
-      longitude
-      address
-      publicId
-      sports
-    }
-  }
-`;
+import { SPOTS_QUERY } from "../src/queries/spots";
 
 type BoundsArray = [[number, number], [number, number]];
 

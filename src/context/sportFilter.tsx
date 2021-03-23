@@ -4,19 +4,7 @@ import { useQuery, gql } from "@apollo/client";
 import { useDebounce } from "use-debounce";
 import { useLocalState } from "src/utils/useLocalState";
 import { SpotsQuery, SpotsQueryVariables } from "src/generated/SpotsQuery";
-
-const SPOTS_QUERY = gql`
-  query SpotsQuery($bounds: BoundsInput!) {
-    spots(bounds: $bounds) {
-      id
-      latitude
-      longitude
-      address
-      publicId
-      sports
-    }
-  }
-`;
+import { SPOTS_QUERY } from "../queries/spots";
 
 type BoundsArray = [[number, number], [number, number]];
 

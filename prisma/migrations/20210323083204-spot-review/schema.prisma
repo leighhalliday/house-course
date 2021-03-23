@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -32,7 +32,6 @@ model SpotReview {
   spotId    Int      @map(name: "spot_id")
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
-  rating    Int
-  comments  String
+
   @@index([spotId], name: "spot_reviews.spotId")
 }
