@@ -19,19 +19,17 @@ const Layout: FunctionComponent<IProps> = ({ main }) => {
                 <img
                   src="/ss-logo.svg"
                   alt="Sportyspots logo"
-                  className="inline w-40"
+                  className="inline lg:w-40 w-32"
                 />
               </a>
             </Link>
-            <div className="text-lg px-8">
-              <p className="font-sans font-medium">
-                Find public spaces to play sports in Amsterdam
-              </p>
+            <div className="text-lg px-4 lg:px-8">
+              <p className="font-sans font-medium ">Play more sports</p>
             </div>
           </div>
 
           <div>
-            {/* {authenticated ? (
+            {authenticated ? (
               <>
                 <Link href="/spots/add">
                   <a>add a spot</a>
@@ -44,7 +42,7 @@ const Layout: FunctionComponent<IProps> = ({ main }) => {
               <Link href="/auth">
                 <a>Login / Signup</a>
               </Link>
-            )} */}
+            )}
           </div>
         </div>
       </nav>

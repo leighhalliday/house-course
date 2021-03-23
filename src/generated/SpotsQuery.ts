@@ -9,6 +9,11 @@ import { BoundsInput } from "./globalTypes";
 // GraphQL query operation: SpotsQuery
 // ====================================================
 
+export interface SpotsQuery_spots_reviews {
+  __typename: "SpotReview";
+  rating: number;
+}
+
 export interface SpotsQuery_spots {
   __typename: "Spot";
   id: string;
@@ -17,10 +22,11 @@ export interface SpotsQuery_spots {
   address: string;
   publicId: string;
   sports: string;
+  reviews: SpotsQuery_spots_reviews[];
 }
 
 export interface SpotsQuery {
-  spots: SpotsQuery_spots[];
+  spots: SpotsQuery_spots[] | null;
 }
 
 export interface SpotsQueryVariables {

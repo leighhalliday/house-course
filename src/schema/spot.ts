@@ -16,6 +16,7 @@ import { Min, Max } from "class-validator";
 import { getBoundsOfDistance } from "geolib";
 import { Context, AuthorizedContext } from "./context";
 import { parseType } from "graphql";
+import { SpotReview } from "./spotReview";
 
 @InputType()
 class CoordinatesInput {
@@ -54,7 +55,7 @@ class SpotInput {
 }
 
 @ObjectType()
-class Spot {
+export class Spot {
   @Field((_type) => ID)
   id!: number;
 
@@ -98,6 +99,16 @@ class Spot {
         latitude: { gte: bounds[0].latitude, lte: bounds[1].latitude },
         longitude: { gte: bounds[0].longitude, lte: bounds[1].longitude },
         id: { not: { equals: this.id } },
+      },
+      take: 1000,
+    });
+  }
+
+  @Field((_type) => [SpotReview])
+  async reviews(@Ctx() ctx: Context) {
+    return ctx.prisma.spotReview.findMany({
+      where: {
+        spotId: this.id,
       },
       take: 1000,
     });
