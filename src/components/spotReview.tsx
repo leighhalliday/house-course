@@ -2,21 +2,23 @@ import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 
 const SpotReview = () => {
-  const [rating, setRating] = useState<number>(0);
+  const [rating, setRating] = useState<number[]>([]);
   const [hover, setHover] = useState<number>(0);
-  const [totals, setTotal] = useState<Array<number>>([0]);
-  const [reviewCount, setReviewCount] = useState<number>(-1);
 
-  useEffect(() => {
-    setTotal((totals) => [...totals, rating]);
-    setReviewCount((reviewCount) => reviewCount + 1);
-  }, [rating]);
+  const addRating = (newRating: number) => {
+    setRating([...rating, newRating]);
+  };
 
-  const reviewAverage: number = totals.reduce((a, b) => a + b) / totals.length;
+  const reviewCount = rating.length;
+
+  const reviewAverage: number =
+    rating.length === 0 ? 0 : rating.reduce((a, b) => a + b) / rating.length;
+
   const roundedReviewAverage: string = reviewAverage.toFixed(1);
 
   return (
     <div className="flex">
+      <p className="pr-2">Review this spot:</p>
       {[...Array(5)].map((star, i) => {
         const ratingValue = i + 1;
 
@@ -28,7 +30,7 @@ const SpotReview = () => {
                 type="radio"
                 name="rating"
                 value={ratingValue}
-                onClick={() => setRating(ratingValue)}
+                onClick={() => addRating(ratingValue)}
               />
 
               <FaStar

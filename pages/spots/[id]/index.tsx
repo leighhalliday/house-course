@@ -76,7 +76,6 @@ function SpotData({ id }: { id: string }) {
             </Image>
             {authenticated ? (
               <div className="flex mb-4">
-                <p className="pr-2">Review this spot:</p>
                 <SpotReview />
               </div>
             ) : (
