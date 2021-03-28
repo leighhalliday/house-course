@@ -45,7 +45,7 @@ function SpotData({ id }: { id: string }) {
     SHOW_SPOT_QUERY,
     { variables: { id } }
   );
-  if (loading || !data) return <Layout main={<div>Loading...</div>} />;
+  if (loading || !data) return <Layout main={<div>Loading....</div>} />;
   if (!data.spot) return <Layout main={<div>Unable to load spot {id}</div>} />;
 
   const { spot } = data;
