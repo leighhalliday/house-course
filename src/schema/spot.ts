@@ -103,7 +103,7 @@ export class Spot {
     });
   }
 
-  @FieldResolver((_type) => [SpotReview])
+  @Field((_type) => [SpotReview])
   async reviews(@Ctx() ctx: Context) {
     // console.log((this as any).SpotReview);
     return (this as any).SpotReview || [];
@@ -122,7 +122,10 @@ export class Spot {
 export class SpotResolver {
   @Query((_returns) => Spot, { nullable: true })
   async spot(@Arg("id") id: string, @Ctx() ctx: Context) {
-    return ctx.prisma.spot.findOne({ where: { id: parseInt(id, 10) } });
+    return ctx.prisma.spot.findOne({
+      where: { id: parseInt(id, 10) },
+      include: { SpotReview: true },
+    });
   }
 
   @Query((_returns) => [Spot], { nullable: true })
@@ -132,7 +135,7 @@ export class SpotResolver {
         latitude: { gte: bounds.sw.latitude, lte: bounds.ne.latitude },
         longitude: { gte: bounds.sw.longitude, lte: bounds.ne.longitude },
       },
-      take: 5,
+      take: 1000,
       include: {
         SpotReview: true,
       },

@@ -27,6 +27,10 @@ const SHOW_SPOT_QUERY = gql`
         latitude
         longitude
       }
+      reviews {
+        id
+        rating
+      }
     }
   }
 `;
@@ -45,12 +49,13 @@ function SpotData({ id }: { id: string }) {
     SHOW_SPOT_QUERY,
     { variables: { id } }
   );
+
+  const { authenticated } = useAuth();
+
   if (loading || !data) return <Layout main={<div>Loading...</div>} />;
   if (!data.spot) return <Layout main={<div>Unable to load spot {id}</div>} />;
 
   const { spot } = data;
-
-  const { authenticated } = useAuth();
 
   return (
     <Layout
@@ -74,13 +79,10 @@ function SpotData({ id }: { id: string }) {
             >
               <Transformation defaultImage="default-image_ltmvxz.jpg" />
             </Image>
-            {authenticated ? (
-              <div className="flex mb-4">
-                <SpotReview />
-              </div>
-            ) : (
-              <div></div>
-            )}
+
+            <div className="flex mb-4">
+              <SpotReview spot={spot} />
+            </div>
 
             <p>Sports: {spot.sports}</p>
           </div>

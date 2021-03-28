@@ -14,6 +14,11 @@ export interface ShowSpotQuery_spot_nearby {
   longitude: number;
 }
 
+export interface ShowSpotQuery_spot_reviews {
+  __typename: "SpotReview";
+  rating: number;
+}
+
 export interface ShowSpotQuery_spot {
   __typename: "Spot";
   id: string;
@@ -24,6 +29,7 @@ export interface ShowSpotQuery_spot {
   latitude: number;
   longitude: number;
   nearby: ShowSpotQuery_spot_nearby[];
+  reviews: ShowSpotQuery_spot_reviews[];
 }
 
 export interface ShowSpotQuery {
