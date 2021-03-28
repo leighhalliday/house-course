@@ -6,20 +6,20 @@ import { SportFilterContext } from "../context/sportFilter";
 import SpotFilter from "./spotFilter";
 
 interface IProps {
-  spots: SpotsQuery_spots[];
+  spots: SpotsQuery_spots[] | any;
   setHighlightedId: (id: string | null) => void;
 }
 
 export default function SpotList({ spots, setHighlightedId }: IProps) {
   const { filteredSports } = useContext(SportFilterContext);
   const filteredSpots = useMemo(
-    () => spots.filter((spot) => filteredSports.includes(spot.sports)),
+    () => spots.filter((spot: any) => filteredSports.includes(spot.sports)),
     [spots, filteredSports]
   );
   return (
     <>
       <SpotFilter spots={spots} />
-      {filteredSpots.map((spot) => (
+      {filteredSpots.map((spot: any) => (
         <Link key={spot.id} href={`/spots/${spot.id}`}>
           <div
             className="px-8 pt-4 cursor-pointer flex flex-row"

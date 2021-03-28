@@ -18,7 +18,7 @@ import MapMarkers from "./mapMarkers";
 
 interface IProps {
   setDataBounds: (bounds: string) => void;
-  spots: SpotsQuery_spots[];
+  spots: SpotsQuery_spots[] | any;
   highlightedId: string | null;
 }
 
@@ -34,7 +34,7 @@ export default function Map({ setDataBounds, spots, highlightedId }: IProps) {
   });
 
   const filteredSpots = useMemo(
-    () => spots.filter((spot) => filteredSports.includes(spot.sports)),
+    () => spots.filter((spot: any) => filteredSports.includes(spot.sports)),
     [spots, filteredSports]
   );
 

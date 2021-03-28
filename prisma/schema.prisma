@@ -23,6 +23,7 @@ model Spot {
 
   @@index([userId], name: "spots.userId")
   @@map(name: "spots")
+  SpotReview SpotReview[]
 }
 
 model SpotReview {
@@ -34,5 +35,6 @@ model SpotReview {
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   rating    Int
   comments  String
+
   @@index([spotId], name: "spot_reviews.spotId")
 }

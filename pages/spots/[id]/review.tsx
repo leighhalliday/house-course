@@ -3,52 +3,42 @@ import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import { loadIdToken } from "src/auth/firebaseAdmin";
 import Layout from "src/components/layout";
-import SpotForm from "src/components/spotForm";
+import SpotReview from "src/components/spotReview";
 import { useAuth } from "src/auth/useAuth";
-import {
-  EditSpotQuery,
-  EditSpotQueryVariables,
-} from "src/generated/EditSpotQuery";
 
-const EDIT_SPOT_QUERY = gql`
-  query EditSpotQuery($id: String!) {
-    spot(id: $id) {
-      id
-      userId
-      address
-      image
-      publicId
-      sports
-      latitude
-      longitude
+const ADD_SPOTREVIEW_QUERY = gql`
+  query AddSpotReviewQuery($id: String!) {
+    SpotReview(id: $id) {
+      spotId
+      rating
+      comments
     }
   }
 `;
 
-export default function EditHouse() {
+export default function Addreview() {
   const {
     query: { id },
   } = useRouter();
 
   if (!id) return null;
-  return <SpotData id={id as string} />;
+
+  return <ReviewData id={id as string} />;
 }
 
-function SpotData({ id }: { id: string }) {
+function ReviewData({ id }: { id: string }) {
   const { user } = useAuth();
-  const { data, loading } = useQuery<EditSpotQuery, EditSpotQueryVariables>(
-    EDIT_SPOT_QUERY,
+  const { data, loading } = useQuery<AddReviewQuery, AddReviewQueryVariables>(
+    ADD_SPOTREVIEW_QUERY,
     { variables: { id } }
   );
 
   if (!user) return <Layout main={<div>Please login</div>} />;
   if (loading) return <Layout main={<div>loading...</div>} />;
   if (data && !data.spot)
-    return <Layout main={<div> We were unable to load the spot</div>} />;
-  if (user.uid !== data?.spot?.userId)
-    return <Layout main={<div> You don't have edit permissions</div>} />;
+    return <Layout main={<div> We were unable to load the review</div>} />;
 
-  return <Layout main={<SpotForm spot={data.spot} />} />;
+  return <Layout main={<SpotReview spot={data.spot} />} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {

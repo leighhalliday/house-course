@@ -1,6 +1,5 @@
 /* Custom Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&display=swap");
 
 @tailwind base;
 
@@ -37,7 +36,7 @@ input:checked + svg {
   z-index: 1;
 }
 
-@font-face {
+/* @font-face {
   font-family: "Rajdhani";
   src: url("/fonts/Rajdhani-Light.ttf");
   font-style: normal;
@@ -57,7 +56,7 @@ input:checked + svg {
   font-style: bold;
   font-weight: 700;
   font-display: swap;
-}
+} */
 
 /* Marker tweaks */
 .mapboxgl-popup-close-button {
