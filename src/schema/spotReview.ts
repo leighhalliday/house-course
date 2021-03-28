@@ -60,15 +60,14 @@ export class SpotReviewResolver {
     return ctx.prisma.spot.findOne({ where: { id: parseInt(id, 10) } });
   }
 
-  @Authorized()
   @Mutation((_returns) => SpotReview, { nullable: true })
   async createSpotReview(
     @Arg("input") input: SpotReviewInput,
-    @Ctx() ctx: AuthorizedContext
+    @Ctx() ctx: Context
   ) {
     const spot = await ctx.prisma.spot.findOne({
       where: {
-        id: input.spotId,
+        id: Number(input.spotId),
       },
     });
     if (spot === null) {
@@ -79,10 +78,10 @@ export class SpotReviewResolver {
       data: {
         spot: {
           connect: {
-            id: input.spotId,
+            id: Number(input.spotId),
           },
         },
-        creator: ctx.uid,
+        creator: "anonymous",
         comments: input.comments,
         rating: input.rating,
       },
