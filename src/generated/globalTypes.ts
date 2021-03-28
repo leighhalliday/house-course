@@ -24,6 +24,12 @@ export interface SpotInput {
   sports: string;
 }
 
+export interface SpotReviewInput {
+  comments: string;
+  rating: number;
+  spotId: string;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================
