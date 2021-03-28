@@ -4,18 +4,17 @@ import {
   Field,
   ID,
   Float,
-  Int,
   Resolver,
   Query,
   Mutation,
   Arg,
   Ctx,
   Authorized,
+  FieldResolver,
 } from "type-graphql";
 import { Min, Max } from "class-validator";
 import { getBoundsOfDistance } from "geolib";
 import { Context, AuthorizedContext } from "./context";
-import { parseType } from "graphql";
 import { SpotReview } from "./spotReview";
 
 @InputType()
@@ -104,14 +103,18 @@ export class Spot {
     });
   }
 
-  @Field((_type) => [SpotReview])
+  @FieldResolver((_type) => [SpotReview])
   async reviews(@Ctx() ctx: Context) {
-    return ctx.prisma.spotReview.findMany({
-      where: {
-        spotId: this.id,
-      },
-      take: 1000,
-    });
+    // console.log((this as any).SpotReview);
+    return (this as any).SpotReview || [];
+    // console.log(await this.reviews());
+    // return this.reviews(ctx);
+    // return ctx.prisma.spotReview.findMany({
+    //   where: {
+    //     spotId: this.id,
+    //   },
+    //   take: 1000,
+    // });
   }
 }
 
@@ -129,7 +132,10 @@ export class SpotResolver {
         latitude: { gte: bounds.sw.latitude, lte: bounds.ne.latitude },
         longitude: { gte: bounds.sw.longitude, lte: bounds.ne.longitude },
       },
-      take: 800,
+      take: 5,
+      include: {
+        SpotReview: true,
+      },
     });
   }
 
