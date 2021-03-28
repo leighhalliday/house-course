@@ -61,6 +61,7 @@ export default function SpotFilter({ spots }: IProps) {
       "TAFELTENNIS",
       "BEACHVOLLEY",
       "OVERIG",
+      "BOKSEN",
     ]);
   };
 
