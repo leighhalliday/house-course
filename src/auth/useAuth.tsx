@@ -41,24 +41,24 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
       });
   };
 
-  useEffect(() => {
-    const cancelAuthListener = firebase
-      .auth()
-      .onIdTokenChanged(async (user) => {
-        if (user) {
-          const token = await user.getIdToken();
-          setTokenCookie(token);
-          setUser(user);
-        } else {
-          removeTokenCookie();
-          setUser(null);
-        }
-      });
-
-    return () => {
-      cancelAuthListener();
-    };
-  }, []);
+  // useEffect(() => {
+  //   const cancelAuthListener = firebase
+  //     .auth()
+  //     .onIdTokenChanged(async (user) => {
+  //       if (user) {
+  //         const token = await user.getIdToken();
+  //         setTokenCookie(token);
+  //         setUser(user);
+  //       } else {
+  //         removeTokenCookie();
+  //         setUser(null);
+  //       }
+  //     });
+  //
+  //   return () => {
+  //     cancelAuthListener();
+  //   };
+  // }, []);
 
   return (
     <AuthContext.Provider value={{ user, logout, authenticated: !!user }}>
