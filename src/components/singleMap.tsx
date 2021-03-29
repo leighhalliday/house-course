@@ -19,6 +19,7 @@ const sportColorMap: Record<Sport, string> = {
   TENNIS: "black",
   VOETBAL: "green",
   voetbal: "#00ff00",
+  BOKSEN: "#4361ee",
 };
 
 const DEFAULT_COLOR = "#ffff00";
