@@ -19,7 +19,7 @@ const Layout: FunctionComponent<IProps> = ({ main }) => {
                 <img
                   src="/ss-logo.svg"
                   alt="Sportyspots logo"
-                  className="inline lg:w-40 w-32"
+                  className="inline lg:w-40 w-32 h-16"
                 />
               </a>
             </Link>

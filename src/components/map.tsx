@@ -30,7 +30,7 @@ export default function Map({ setDataBounds, spots, highlightedId }: IProps) {
   const [viewport, setViewport] = useLocalState<ViewState>("viewport", {
     latitude: 52.379189,
     longitude: 4.899431,
-    zoom: 14,
+    zoom: 15,
   });
 
   const filteredSpots = useMemo(

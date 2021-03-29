@@ -10,4 +10,5 @@ export const SPORTS = [
   "SKATE",
   "voetbal",
   "FITNESS",
+  "BOKSEN",
 ] as const;
