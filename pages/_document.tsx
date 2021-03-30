@@ -17,6 +17,8 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>Sportyspots - Buiten sporten in Amsterdam</title>
+          <meta property="og:title" content="My page title" key="title" />
           <link rel="icon" href="/favicon.ico" />
           <link
             rel="preconnect"
