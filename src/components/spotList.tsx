@@ -18,7 +18,12 @@ export default function SpotList({ spots, setHighlightedId }: IProps) {
   );
   return (
     <>
-      <SpotFilter spots={spots} />
+      <div
+        className="sticky top-0"
+        style={{ backgroundColor: "rgb(34, 34, 34)" }}
+      >
+        <SpotFilter spots={spots} />
+      </div>
       {filteredSpots.map((spot: any) => (
         <Link key={spot.id} href={`/spots/${spot.id}`}>
           <div
