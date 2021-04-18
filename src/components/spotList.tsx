@@ -18,7 +18,12 @@ export default function SpotList({ spots, setHighlightedId }: IProps) {
   );
   return (
     <>
-      <SpotFilter spots={spots} />
+      <div
+        className="sticky top-0"
+        style={{ backgroundColor: "rgb(34, 34, 34)" }}
+      >
+        <SpotFilter spots={spots} />
+      </div>
       {filteredSpots.map((spot: any) => (
         <Link key={spot.id} href={`/spots/${spot.id}`}>
           <div
@@ -43,7 +48,7 @@ export default function SpotList({ spots, setHighlightedId }: IProps) {
                 >
                   <Transformation defaultImage="default-image_ltmvxz.jpg" />
                 </Image>
-                <div className="sm-w-full sm:pl-4">
+                <div className="sm-w-full lg:pl-4">
                   <h2 className="text-xl">{spot.address}</h2>
                   <p className="pb-2 text-lg text-gray-200">
                     Sport: {spot.sports}

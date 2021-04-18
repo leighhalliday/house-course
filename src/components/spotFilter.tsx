@@ -66,7 +66,7 @@ export default function SpotFilter({ spots }: IProps) {
   };
 
   return (
-    <div className="w-full h-24 p-8">
+    <div className="w-full h-20 p-8">
       <a
         role="button"
         onClick={() => handleToggle()}
