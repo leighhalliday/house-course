@@ -71,10 +71,7 @@ const SpotReview: React.FC<{ spot: ShowSpotQuery_spot }> = ({ spot }) => {
   return (
     <>
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        Thanks for submitting your review{" "}
-        <span role="img" aria-label="thumbs-up">
-          👍
-        </span>
+        Thanks for submitting your review!
       </Modal>
 
       <div className="flex items-center ml-auto">
