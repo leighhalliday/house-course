@@ -71,9 +71,8 @@ const SpotReview: React.FC<{ spot: ShowSpotQuery_spot }> = ({ spot }) => {
   return (
     <>
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        Thanks for submitting your review!
+        <h1>Thanks for submitting your review!</h1>
       </Modal>
-
       <div className="flex items-center ml-auto">
         <p className="pr-4">Review this spot:</p>
         {[...Array(5)].map((star, i) => {

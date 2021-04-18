@@ -38,6 +38,6 @@ export default function Modal({ open, children, onClose }: IModal) {
       document.getElementById("modal-root") as HTMLElement
     );
   } else {
-    return "";
+    return "" as any;
   }
 }
