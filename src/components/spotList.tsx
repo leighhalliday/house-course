@@ -22,12 +22,12 @@ export default function SpotList({ spots, setHighlightedId }: IProps) {
       {filteredSpots.map((spot: any) => (
         <Link key={spot.id} href={`/spots/${spot.id}`}>
           <div
-            className="px-8 pt-4 cursor-pointer flex flex-row"
+            className="px-8 pt-4 cursor-pointer lg:flex"
             onMouseEnter={() => setHighlightedId(spot.id)}
             onMouseLeave={() => setHighlightedId(null)}
           >
             <div className="w-full divide-y divide-y-reverse divide-white divide-opacity-25">
-              <div className="sm:w-full md:w-full flex">
+              <div className="w-full w-full lg:flex">
                 <Image
                   className="rounded pb-2"
                   cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
@@ -36,8 +36,8 @@ export default function SpotList({ spots, setHighlightedId }: IProps) {
                   secure
                   dpr="auto"
                   quality="auto"
-                  width={320}
-                  height={Math.floor((9 / 16) * 320)}
+                  width={360}
+                  height={Math.floor((9 / 16) * 360)}
                   crop="fill"
                   gravity="auto"
                 >

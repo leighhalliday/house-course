@@ -47,9 +47,9 @@ class MyDocument extends Document {
           </noscript>
         </Head>
         <body>
+          <div id="modal-root"></div>
           <Main />
           <NextScript />
-          <div id="modal-root"></div>
         </body>
       </Html>
     );

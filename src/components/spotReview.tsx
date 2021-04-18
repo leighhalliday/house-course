@@ -32,7 +32,6 @@ const ADD_SPOTREVIEW = gql`
 const SpotReview: React.FC<{ spot: ShowSpotQuery_spot }> = ({ spot }) => {
   const [rating, setRating] = useState<number>(0);
   const [hover, setHover] = useState<number>(0);
-  const [disable, setDisable] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const [mutate, status] = useMutation<
@@ -41,23 +40,25 @@ const SpotReview: React.FC<{ spot: ShowSpotQuery_spot }> = ({ spot }) => {
   >(ADD_SPOTREVIEW);
 
   const addRating = (newRating: number) => {
-    setDisable(true);
     setIsOpen(true);
-    mutate({
-      variables: {
-        input: {
-          comments: "comment",
-          rating: newRating,
-          spotId: spot.id, //?
+
+    setTimeout(function () {
+      mutate({
+        variables: {
+          input: {
+            comments: "comment",
+            rating: newRating,
+            spotId: spot.id, //?
+          },
         },
-      },
-    })
-      .then(() => {
-        ("");
       })
-      .catch((e) => {
-        alert("Oops, something went wrong. Try refreshing the page.");
-      });
+        .then(() => {
+          ("");
+        })
+        .catch((e) => {
+          alert("Oops, something went wrong. Try refreshing the page.");
+        });
+    }, 1000);
   };
 
   const reviewAverage: number =
@@ -70,7 +71,10 @@ const SpotReview: React.FC<{ spot: ShowSpotQuery_spot }> = ({ spot }) => {
   return (
     <>
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        Thanks for submitting your review
+        Thanks for submitting your review{" "}
+        <span role="img" aria-label="thumbs-up">
+          👍
+        </span>
       </Modal>
 
       <div className="flex items-center ml-auto">

@@ -59,7 +59,7 @@ export default function Home() {
                 setHighlightedId={setHighlightedId}
               />
             </div>
-            <div className="lg:w-3/5">
+            <div className="lg:w-3/5 sm:hidden md:block lg:block">
               <Map
                 setDataBounds={setDatabounds}
                 spots={lastData ? lastData.spots : []}
