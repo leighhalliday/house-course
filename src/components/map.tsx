@@ -30,7 +30,7 @@ export default function Map({ setDataBounds, spots, highlightedId }: IProps) {
   const [viewport, setViewport] = useLocalState<ViewState>("viewport", {
     latitude: 52.379189,
     longitude: 4.899431,
-    zoom: 15,
+    zoom: 1,
   });
 
   const filteredSpots = useMemo(
@@ -119,7 +119,7 @@ export default function Map({ setDataBounds, spots, highlightedId }: IProps) {
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         ref={(instance) => (mapRef.current = instance)}
-        minZoom={12}
+        minZoom={1}
         maxZoom={15}
         mapStyle={"mapbox://styles/sezayi/ckkjxz1uw2a9017nwzr3wfimk"}
         onLoad={() => {

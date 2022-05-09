@@ -24,7 +24,7 @@ const Layout: FunctionComponent<IProps> = ({ main }) => {
               </a>
             </Link>
             <div className="text-lg px-4 lg:px-8">
-              <p className="font-sans font-medium ">Play more sports</p>
+              <p className="font-sans font-medium ">in Amsterdam</p>
             </div>
           </div>
 

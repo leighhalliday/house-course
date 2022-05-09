@@ -46,29 +46,27 @@ export default function Home() {
   if (error) return <Layout main={<div>Error loadding spots</div>} />;
 
   return (
-    <>
-      <Layout
-        main={
-          <div className="flex flex-col-reverse lg:flex lg:flex-row">
-            <div
-              className="lg:w-2/5 pb-4"
-              style={{ maxHeight: "calc(100vh - 64px)", overflow: "scroll" }}
-            >
-              <SpotList
-                spots={lastData ? lastData.spots : []}
-                setHighlightedId={setHighlightedId}
-              />
-            </div>
-            <div className="lg:w-3/5 sm:hidden md:block lg:block">
-              <Map
-                setDataBounds={setDatabounds}
-                spots={lastData ? lastData.spots : []}
-                highlightedId={highlightedId}
-              />
-            </div>
+    <Layout
+      main={
+        <div className="flex flex-col lg:flex lg:flex-row">
+          <div
+            className="lg:w-2/5 pb-4"
+            style={{ maxHeight: "calc(100vh - 64px)", overflow: "scroll" }}
+          >
+            <SpotList
+              spots={lastData ? lastData.spots : []}
+              setHighlightedId={setHighlightedId}
+            />
           </div>
-        }
-      />
-    </>
+          <div className="lg:w-3/5 hidden md:block lg:block">
+            <Map
+              setDataBounds={setDatabounds}
+              spots={lastData ? lastData.spots : []}
+              highlightedId={highlightedId}
+            />
+          </div>
+        </div>
+      }
+    />
   );
 }
